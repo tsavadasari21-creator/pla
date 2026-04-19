@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Project Insight | AI-Powered Customer Intelligence Platform</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
+      color: #111827;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1E2A5E, #3A4D8F);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo i {
+      background: none;
+      color: #3A4D8F;
+      font-size: 1.8rem;
+      background-clip: unset;
+      -webkit-background-clip: unset;
+      color: #2C3E9E;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2C3E9E;
+    }
+
+    .btn-outline {
+      border: 1.5px solid #2C3E9E;
+      background: transparent;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2C3E9E;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #2C3E9E;
+      color: white;
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: linear-gradient(105deg, #1E2A5E, #2C3E9E);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(44, 62, 158, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(44, 62, 158, 0.3);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid #e2e8f0;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #1e293b;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: #2C3E9E;
+      background: #f8fafc;
+    }
+
+    /* hero */
+    .hero {
+      padding: 48px 0 64px 0;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero-badge {
+      background: #eef2ff;
+      color: #1E2A5E;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #111827, #2C3E9E);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-top: 16px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #475569;
+      max-width: 85%;
+      margin: 20px 0 24px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .stat-item {
+      background: white;
+      border-radius: 28px;
+      padding: 8px 20px 8px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
+      border: 1px solid #edf2f7;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1E2A5E;
+    }
+
+    .stat-label {
+      font-weight: 500;
+      color: #475569;
+    }
+
+    /* KPI row */
+    .kpi-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 48px;
+      padding: 28px 24px;
+      margin: 40px 0;
+      border: 1px solid #eef2ff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .kpi-card {
+      flex: 1;
+      text-align: center;
+      min-width: 140px;
+    }
+
+    .kpi-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #2C3E9E;
+    }
+
+    .kpi-desc {
+      font-weight: 500;
+      color: #334155;
+    }
+
+    /* summary section */
+    .summary-card {
+      background: linear-gradient(125deg, #f8faff, #ffffff);
+      border-radius: 32px;
+      padding: 40px;
+      margin: 48px 0;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+    }
+
+    .summary-card h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .summary-text {
+      font-size: 1.1rem;
+      color: #1f2a44;
+      border-left: 4px solid #2C3E9E;
+      padding-left: 24px;
+      margin: 16px 0 12px;
+      font-weight: 500;
+    }
+
+    /* features grid */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 40px 0 56px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px 24px;
+      transition: all 0.25s ease;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: #cbdffc;
+      box-shadow: 0 24px 40px -12px rgba(44, 62, 158, 0.12);
+    }
+
+    .feature-icon {
+      background: #eef2ff;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      font-size: 1.8rem;
+      color: #2C3E9E;
+      margin-bottom: 24px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: #4b5563;
+    }
+
+    /* live insight mock */
+    .insight-demo {
+      background: #0f172a;
+      border-radius: 36px;
+      padding: 36px 32px;
+      margin: 48px 0;
+      color: white;
+      background-image: radial-gradient(circle at 10% 30%, rgba(44, 62, 158, 0.2) 0%, #0f172a 80%);
+    }
+
+    .insight-demo h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .insight-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 28px;
+      justify-content: space-between;
+    }
+
+    .insight-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 20px;
+      flex: 1;
+      min-width: 200px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .insight-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #b9c8ff;
+    }
+
+    /* proposal details row */
+    .proposal-details {
+      display: flex;
+      flex-wrap: wrap;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 32px;
+      margin: 48px 0 32px;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #eef2ff;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);
+    }
+
+    .proposal-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .meta-block p:first-child {
+      font-weight: 600;
+      color: #6c727f;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .meta-block p:last-child {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #0f172a;
+    }
+
+    .contact-btn {
+      background: #1E2A5E;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .contact-btn:hover {
+      background: #2C3E9E;
+      transform: scale(1.02);
+    }
+
+    footer {
+      border-top: 1px solid #eef2ff;
+      margin-top: 56px;
+      padding: 32px 0 40px;
+      text-align: center;
+      color: #5b677b;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .hero p {
+        max-width: 100%;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .kpi-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .summary-card {
+        padding: 28px;
+      }
+      .proposal-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-brain"></i> 
+      <span>Project Insight</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Platform</a>
+      <a href="#">Intelligence</a>
+      <a href="#">ROI</a>
+      <a href="#">Insights</a>
+      <a href="#" class="btn-outline">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-badge">
+        <i class="fas fa-robot"></i> AI-Powered · Real-time CDP
+      </div>
+      <h1>AI-Powered Customer<br>Intelligence Platform</h1>
+      <p>Unify customer data, predict churn risk, and orchestrate real-time personalization — unlocking superior lifetime value and a true competitive advantage.</p>
+      <div>
+        <button class="btn-primary"><i class="fas fa-chart-line"></i> Request Demo</button>
+        <button class="btn-secondary" style="margin-left: 12px;"><i class="fas fa-play-circle"></i> Watch Overview</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number">15%</span> <span class="stat-label">↑ retention lift</span></div>
+        <div class="stat-item"><span class="stat-number">20%</span> <span class="stat-label">↑ marketing ROI</span></div>
+        <div class="stat-item"><span class="stat-number">Real-time</span> <span class="stat-label">personalization</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Row: quantified value -->
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-number">+15%</div><div class="kpi-desc">Customer Retention</div></div>
+    <div class="kpi-card"><div class="kpi-number">+20%</div><div class="kpi-desc">Marketing ROI</div></div>
+    <div class="kpi-card"><div class="kpi-number">89%</div><div class="kpi-desc">Churn Prediction Accuracy</div></div>
+    <div class="kpi-card"><div class="kpi-number"><i class="fas fa-bolt"></i> 120ms</div><div class="kpi-desc">Real-time inference</div></div>
+  </div>
+
+  <!-- Executive Summary (core proposal text) -->
+  <div class="summary-card">
+    <h2>📄 Executive Summary</h2>
+    <div class="summary-text">
+      <i class="fas fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i> 
+      To drive a <strong>15% increase in customer retention</strong> and a <strong>20% improvement in marketing ROI</strong>, we propose implementing an AI-Powered Customer Intelligence Platform. 
+      This solution will unify our customer data, predict churn risk, and personalize engagement in real-time, enhancing lifetime value and competitive advantage.
+    </div>
+    <p style="margin-top: 20px; color: #2d3a5e;">Project Insight delivers unified intelligence across every touchpoint — from predictive churn modeling to hyper-personalized journeys, empowering data-driven decisions at scale.</p>
+  </div>
+
+  <!-- Core Features Grid -->
+  <h2 class="section-title">Intelligent capabilities that drive growth</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-database"></i></div>
+      <h3>Unified Customer Data</h3>
+      <p>Seamlessly aggregate behavioral, transactional & demographic data into a golden customer profile — break silos and gain 360° visibility.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>Predictive Churn Risk</h3>
+      <p>AI models detect early warning signals, assign churn probability scores, and recommend proactive retention campaigns before it's too late.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
+      <h3>Real-Time Personalization</h3>
+      <p>Deliver next-best-action recommendations, dynamic offers, and tailored content across web, email, mobile — all in milliseconds.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-chart-simple"></i></div>
+      <h3>Lifetime Value Intelligence</h3>
+      <p>Predict CLV segments, optimize acquisition spend, and maximize long-term profitability through AI-powered LTV modeling.</p>
+    </div>
+  </div>
+
+  <!-- Live AI Insight Mock (Real-time demonstration) -->
+  <div class="insight-demo">
+    <h3><i class="fas fa-charging-station"></i> Live AI Intelligence Dashboard</h3>
+    <p style="opacity: 0.85; margin-bottom: 10px;">Real-time churn risk & engagement signals — powered by our predictive engine</p>
+    <div class="insight-flex">
+      <div class="insight-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="insight-value">High risk: 12%</div>
+        <div>of active customers show churn signals → <strong>intervention ready</strong></div>
+      </div>
+      <div class="insight-card">
+        <i class="fas fa-rocket"></i>
+        <div class="insight-value">+23%</div>
+        <div>predicted uplift with real-time personalization campaigns</div>
+      </div>
+      <div class="insight-card">
+        <i class="fas fa-clock"></i>
+        <div class="insight-value">Real-time</div>
+        <div>segments updated every 30s | next best action live</div>
+      </div>
+    </div>
+    <div style="margin-top: 24px; font-size: 0.9rem; background: rgba(255,255,255,0.1); border-radius: 50px; padding: 8px 16px; display: inline-block;">
+      <i class="fas fa-microchip"></i> AI inference engine · GDPR compliant · predictive accuracy 89%
+    </div>
+  </div>
+
+  <!-- Why Project Insight / additional value -->
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; margin: 40px 0 20px; align-items: center;">
+    <div style="flex: 1.2;">
+      <h2 style="font-size: 1.8rem; font-weight: 700;">Accelerate ROI with real-time intelligence</h2>
+      <ul style="margin-top: 20px; list-style: none;">
+        <li style="margin-bottom: 14px;"><i class="fas fa-check-circle" style="color: #2C3E9E; margin-right: 12px;"></i> <strong>Data unification</strong> — 360° customer view across all channels</li>
+        <li style="margin-bottom: 14px;"><i class="fas fa-check-circle" style="color: #2C3E9E; margin-right: 12px;"></i> <strong>Predictive churn & LTV</strong> — proactive retention strategies</li>
+        <li style="margin-bottom: 14px;"><i class="fas fa-check-circle" style="color: #2C3E9E; margin-right: 12px;"></i> <strong>Real-time personalization engine</strong> — boost conversion & loyalty</li>
+        <li style="margin-bottom: 14px;"><i class="fas fa-check-circle" style="color: #2C3E9E; margin-right: 12px;"></i> <strong>Measurable impact</strong> : 15% retention lift, 20% higher marketing efficiency</li>
+      </ul>
+      <button class="btn-primary" style="margin-top: 16px;"><i class="fas fa-file-alt"></i> View Full Proposal</button>
+    </div>
+    <div style="flex: 0.8; background: linear-gradient(145deg, #eef2ff, white); border-radius: 40px; padding: 32px; text-align: center; border: 1px solid #e0e7ff;">
+      <i class="fas fa-chart-line" style="font-size: 3rem; color: #2C3E9E;"></i>
+      <div style="font-weight: 800; font-size: 2rem; margin: 12px 0;">+20%</div>
+      <div>improved marketing ROI</div>
+      <div style="margin-top: 16px; font-size: 0.9rem;">Based on early adopter simulations</div>
+    </div>
+  </div>
+
+  <!-- Proposal Details (Sponsor, ID, Date) -->
+  <div class="proposal-details">
+    <div class="proposal-meta">
+      <div class="meta-block">
+        <p><i class="fas fa-user-check"></i> Sponsor</p>
+        <p>Taylor Chen / Customer Intelligence & Analytics Dept.</p>
+      </div>
+      <div class="meta-block">
+        <p><i class="fas fa-calendar-alt"></i> Date</p>
+        <p>February 8, 2024</p>
+      </div>
+      <div class="meta-block">
+        <p><i class="fas fa-id-card"></i> Proposal ID</p>
+        <p>AI-2024-01</p>
+      </div>
+      <div class="meta-block">
+        <p><i class="fas fa-chart-pie"></i> Version</p>
+        <p>2.0 · Executive</p>
+      </div>
+    </div>
+    <button class="contact-btn"><i class="fas fa-envelope"></i> Schedule Consultation</button>
+  </div>
+
+  <!-- Trust & Integration -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; background: #f9fafc; border-radius: 48px; padding: 28px 32px; margin: 20px 0 20px;">
+    <div><i class="fas fa-cloud-arrow-up"></i> Seamless cloud integration</div>
+    <div><i class="fas fa-shield-alt"></i> Enterprise-grade security</div>
+    <div><i class="fas fa-plug"></i> 50+ connectors (CRM, CDP, warehouse)</div>
+    <div><i class="fas fa-chart-line"></i> Real-time API & batch scoring</div>
+  </div>
+
+  <footer>
+    <p>© 2025 Project Insight — AI-Powered Customer Intelligence Platform. All insights drive measurable growth.</p>
+    <p style="margin-top: 12px; font-size: 0.85rem;"><i class="fas fa-microchip"></i> Built for enterprise intelligence · Predictive · Real-time · Unmatched personalization</p>
+  </footer>
+</div>
+
+<!-- small interaction (demo button alert optional but polished) -->
+<script>
+  // optional subtle console greeting and demo alert just for interactivity
+  const demoBtn = document.querySelector('.btn-primary');
+  if (demoBtn) {
+    demoBtn.addEventListener('click', () => {
+      alert("🚀 Project Insight demo: Unlock 15% retention & 20% ROI. Our team will reach out with tailored insights.");
+    });
+  }
+  const contactSchedule = document.querySelector('.contact-btn');
+  if (contactSchedule) {
+    contactSchedule.addEventListener('click', () => {
+      alert("📅 Thank you! A customer intelligence specialist will contact you within 24h.");
+    });
+  }
+</script>
+
+</body>
+</html>
