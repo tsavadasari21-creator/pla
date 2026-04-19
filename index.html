@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Portfolio Insight | Diversified 5-Stock Analysis</title>
-  <!-- Google Fonts + Chart.js + Font Awesome -->
+  <title>Mohith Mallavarapu | Mechanical Engineering Portfolio</title>
+  <!-- Google Fonts + Font Awesome 6 (Free CDN) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -17,396 +16,387 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f5f7fb;
-      color: #1e293b;
+      background: linear-gradient(145deg, #fef9f0 0%, #f4f7fe 100%);
+      color: #1a2c3e;
       line-height: 1.5;
-      padding: 32px 24px;
+      padding: 2rem 1.5rem;
     }
 
-    .dashboard-container {
-      max-width: 1400px;
+    /* smooth container */
+    .portfolio {
+      max-width: 1300px;
       margin: 0 auto;
     }
 
-    /* typography */
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      background: linear-gradient(135deg, #0f2b3d, #1e4a6e);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-left: 5px solid #2563eb;
-      padding-left: 16px;
-    }
-
-    h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-
+    /* colourful block style : every card has distinct border/shadow personality */
     .card {
-      background: white;
-      border-radius: 28px;
-      padding: 1.5rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
-      border: 1px solid #e9eef3;
-      transition: all 0.2s;
-      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.01);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      height: 100%;
     }
 
     .card:hover {
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.15);
     }
 
-    .grid-2col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 1.8rem;
-    }
-
-    .stock-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .stock-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 1.2rem 1.2rem;
-      border: 1px solid #eef2f8;
-      transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .stock-card:hover {
-      border-color: #cbdffc;
-      background: #fefefe;
-    }
-
-    .stock-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      border-bottom: 2px dotted #e2e8f0;
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
-
-    .stock-symbol {
+    /* rainbow accent borders / header styles */
+    .section-title {
+      font-size: 1.9rem;
       font-weight: 800;
-      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      background: linear-gradient(125deg, #1e2f5e, #3b4e8c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.01em;
+      border-left: 6px solid #f4a261;
+      padding-left: 1rem;
     }
 
-    .stock-return {
-      font-weight: 700;
-      font-size: 1.2rem;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2.5rem;
     }
 
-    .positive {
-      color: #10b981;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2rem;
     }
 
-    .table-wrapper {
-      overflow-x: auto;
-      margin: 1rem 0;
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #fef7e0 100%);
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 215, 150, 0.5);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
+    .hero-name {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #0b2b40, #2c5282);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
     }
 
-    th, td {
-      padding: 12px 12px;
-      text-align: left;
-      border-bottom: 1px solid #edf2f7;
-    }
-
-    th {
-      background: #f8fafc;
+    .hero-tag {
+      background: #ffe6c7;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
       font-weight: 600;
-      color: #1e3a5f;
+      font-size: 0.85rem;
+      color: #b45f2b;
     }
 
-    .badge {
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .contact-chip {
+      background: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #2c3e50;
+      transition: all 0.2s;
+      border: 1px solid #ffe0b5;
+    }
+
+    .contact-chip i {
+      color: #e67e22;
+      font-size: 1rem;
+    }
+
+    /* objective card */
+    .objective-card {
+      background: linear-gradient(115deg, #eef2ff, #ffffff);
+      border-left: 12px solid #f39c12;
+      border-radius: 2rem;
+    }
+
+    /* education cards */
+    .edu-card {
+      background: white;
+      border-top: 8px solid #3b82f6;
+      border-radius: 1.8rem;
+    }
+
+    .edu-card:last-child {
+      border-top-color: #10b981;
+    }
+
+    .badge-date {
       background: #eef2ff;
-      color: #2563eb;
-      padding: 4px 12px;
-      border-radius: 30px;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 600;
       display: inline-block;
+      margin-bottom: 0.8rem;
     }
 
-    .kpi-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-      margin: 1rem 0;
+    /* project card */
+    .project-card {
+      background: linear-gradient(125deg, #fff6e8, #ffffff);
+      border: 1px solid #ffddb0;
     }
 
-    .kpi {
-      background: #f8fafc;
-      border-radius: 28px;
-      padding: 1rem 1.5rem;
-      flex: 1;
-      text-align: center;
-      min-width: 140px;
-      border: 1px solid #eef2ff;
+    .skill-group {
+      background: #fef7e0;
+      padding: 1rem 1.2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 1rem;
     }
 
-    .kpi-number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #0f2b3d;
-    }
-
-    .event-timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .event-item {
-      display: flex;
-      gap: 16px;
-      border-left: 3px solid #2563eb;
-      padding-left: 18px;
-    }
-
-    .event-date {
-      font-weight: 700;
-      min-width: 100px;
-      color: #2563eb;
-    }
-
-    hr {
-      margin: 1rem 0;
-      border-color: #eef2ff;
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 2rem;
+    .skill-tag {
+      display: inline-block;
+      background: white;
+      padding: 0.4rem 1rem;
+      margin: 0.3rem 0.5rem 0.3rem 0;
+      border-radius: 40px;
       font-size: 0.8rem;
-      color: #5b6e8c;
-      border-top: 1px solid #e2edf7;
-      padding-top: 2rem;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: all 0.15s;
+      border: 1px solid #e2e8f0;
     }
 
+    .skill-tag i {
+      margin-right: 6px;
+      color: #e67e22;
+    }
+
+    .skill-tag:hover {
+      transform: scale(1.02);
+      background: #f1f5f9;
+      border-color: #f39c12;
+    }
+
+    .strength-icon {
+      background: #f1f5f9;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.2rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #2c5282;
+    }
+
+    .strength-item {
+      background: #ffffffdd;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      text-align: center;
+      transition: 0.2s;
+      border: 1px solid #ffe0b0;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(255, 248, 235, 0.7);
+      border-radius: 2rem;
+      color: #4a5568;
+    }
+
+    .btn-resume {
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(230,126,34,0.3);
+    }
+
+    .btn-resume:hover {
+      background: #d35400;
+      transform: translateY(-2px);
+    }
+
+    /* responsive */
     @media (max-width: 700px) {
       body {
-        padding: 20px 16px;
+        padding: 1rem;
       }
-      .grid-2col {
-        grid-template-columns: 1fr;
+      .hero-name {
+        font-size: 2rem;
       }
-      .kpi-row {
-        flex-direction: column;
+      .section-title {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-<div class="dashboard-container">
-  <!-- header -->
-  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 28px;">
+<div class="portfolio">
+  <!-- HERO SECTION with colours & blocks -->
+  <div class="hero">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+      <div>
+        <span class="hero-tag"><i class="fas fa-cogs"></i> Mechanical Engineer | Renewable Energy</span>
+        <h1 class="hero-name">MOHITH MALLAVARAPU</h1>
+        <div class="contact-row">
+          <span class="contact-chip"><i class="fas fa-phone-alt"></i> +1 216-235-2145</span>
+          <span class="contact-chip"><i class="fas fa-envelope"></i> mohithmallavarapu70@gmail.com</span>
+          <span class="contact-chip"><i class="fas fa-map-marker-alt"></i> 1801 E 12th St, Apt-518, Cleveland, OH 44115</span>
+        </div>
+      </div>
+      <div style="background: #ffe2c1; border-radius: 3rem; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
+        <i class="fas fa-bolt" style="color:#e67e22;"></i> <strong>Open to work</strong> · Entry-Level Engineer
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECTIVE (colourful block) -->
+  <div class="card objective-card" style="margin-bottom: 2rem;">
+    <h2 class="section-title" style="border-left-color: #f39c12;"><i class="fas fa-bullseye" style="margin-right: 10px;"></i> Objective</h2>
+    <p style="font-size: 1.05rem; font-weight: 500; color: #2c3e50;">Motivated Mechanical Engineering graduate with strong technical knowledge and hands-on project experience in renewable energy and design software. Seeking an entry-level engineering position to apply problem-solving, design, and analytical skills while contributing to organizational growth.</p>
+  </div>
+
+  <!-- EDUCATION : 2 blocks with different colours -->
+  <div class="grid-2">
+    <div class="card edu-card">
+      <div class="badge-date"><i class="fas fa-graduation-cap"></i> Spring 2025 – Present</div>
+      <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem;">Cleveland State University</h3>
+      <p style="font-size: 1rem; font-weight: 600; color: #2c5282;">Master of Science in Mechanical Engineering</p>
+      <p style="margin-top: 0.8rem;"><i class="fas fa-book-open"></i> Coursework: Advanced Manufacturing, Design Optimization, Computational Methods.</p>
+      <p><i class="fas fa-map-marker-alt"></i> Cleveland, OH</p>
+    </div>
+    <div class="card edu-card" style="border-top-color: #10b981;">
+      <div class="badge-date" style="background: #e0f2e9;"><i class="fas fa-university"></i> 2019 – 2023</div>
+      <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem;">VNR Vignana Jyothi Institute of Engineering and Technology</h3>
+      <p style="font-size: 1rem; font-weight: 600; color: #2c5282;">Bachelor of Technology in Mechanical Engineering</p>
+      <p><strong>CGPA:</strong> 5.9/10 &nbsp; | &nbsp; Hyderabad, India</p>
+      <p><i class="fas fa-chalkboard-teacher"></i> Major projects & coursework in thermodynamics, design & manufacturing</p>
+    </div>
+  </div>
+
+  <!-- ACADEMIC PROJECT (highlight block) -->
+  <div class="card project-card" style="margin-bottom: 2rem;">
+    <h2 class="section-title" style="border-left-color: #e67e22;"><i class="fas fa-solar-panel"></i> Featured Project</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start;">
+      <div style="flex: 2;">
+        <h3 style="font-size: 1.8rem; font-weight: 800; color: #b85c00;">Charging Electric Vehicle Using Solar Panels</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.8rem 0 1rem 0;">
+          <span class="skill-tag" style="background:#fee2e2;"><i class="fab fa-autoprefixer"></i> AutoCAD</span>
+          <span class="skill-tag" style="background:#e0f2fe;"><i class="fas fa-cube"></i> Fusion 360</span>
+          <span class="skill-tag" style="background:#e6f7ec;"><i class="fas fa-battery-full"></i> BMS Integration</span>
+          <span class="skill-tag" style="background:#fff0db;"><i class="fas fa-chart-line"></i> Cost Analysis</span>
+        </div>
+        <ul style="margin-left: 1.2rem; color: #2c3e50; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Designed a sustainable solar-powered EV charging system, reducing grid dependency.</li>
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Modeled panel placement & vehicle setup using AutoCAD and Fusion 360 for optimal efficiency.</li>
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Integrated battery management system (BMS) concepts to enhance charging performance & safety.</li>
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Conducted feasibility & cost analysis for small-scale deployment — projected 22% energy offset.</li>
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Collaborated with a team of 4, dividing design, research, and testing responsibilities.</li>
+          <li><i class="fas fa-check-circle" style="color:#e67e22;"></i> Presented findings at a technical seminar, highlighting renewable energy applications in modern transportation.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; background: linear-gradient(125deg,#fdebd0, #fff3e6); border-radius: 1.5rem; padding: 1rem; text-align: center;">
+        <i class="fas fa-sun" style="font-size: 3rem; color:#f39c12;"></i>
+        <p style="margin-top: 0.5rem; font-weight: 600;">Solar-to-EV prototype<br> <span style="font-size: 0.8rem;">clean energy innovation</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL SKILLS (Colourful blocks / categories) -->
+  <div class="card" style="margin-bottom: 2rem; background: #fffffffa;">
+    <h2 class="section-title"><i class="fas fa-microchip"></i> Technical Skills & Tools</h2>
+    <div class="grid-3" style="gap: 1.2rem;">
+      <div class="skill-group" style="background: #ffe8df;">
+        <h4><i class="fas fa-drafting-compass"></i> Design & CAD Tools</h4>
+        <div><span class="skill-tag">AutoCAD</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">Fusion 360</span></div>
+      </div>
+      <div class="skill-group" style="background: #e1f5fe;">
+        <h4><i class="fas fa-code"></i> Programming & Analysis</h4>
+        <div><span class="skill-tag">MATLAB</span><span class="skill-tag">Python (basic)</span><span class="skill-tag">ANSYS (beginner)</span></div>
+      </div>
+      <div class="skill-group" style="background: #e8f5e9;">
+        <h4><i class="fas fa-cogs"></i> Engineering Skills</h4>
+        <div><span class="skill-tag">Product Design</span><span class="skill-tag">Manufacturing Processes</span><span class="skill-tag">Mechanical Systems Analysis</span></div>
+      </div>
+      <div class="skill-group" style="background: #fef2e0;">
+        <h4><i class="fas fa-table"></i> Other Tools</h4>
+        <div><span class="skill-tag">MS Excel</span><span class="skill-tag">MS Word</span><span class="skill-tag">PowerPoint</span><span class="skill-tag">Google Workspace</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRENGTHS Grid (all colours block) -->
+  <div class="card" style="background: #fefaf5; margin-bottom: 2rem;">
+    <h2 class="section-title"><i class="fas fa-star-of-life"></i> Core Strengths</h2>
+    <div class="grid-3" style="margin-top: 0.5rem;">
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-rocket"></i></div><h3>Quick Learner</h3><p>Adaptable & fast upskilling</p></div>
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-comments"></i></div><h3>Communication</h3><p>Strong written & verbal</p></div>
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-hourglass-half"></i></div><h3>Time Management</h3><p>Efficient task prioritization</p></div>
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-users"></i></div><h3>Team Collaboration</h3><p>Cross-functional teamwork</p></div>
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-tasks"></i></div><h3>Project Management</h3><p>Lead initiatives to success</p></div>
+      <div class="strength-item"><div class="strength-icon"><i class="fas fa-brain"></i></div><h3>Analytical Thinking</h3><p>Data-driven problem solving</p></div>
+    </div>
+  </div>
+
+  <!-- Additional block: contact / downloadable vibe -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; background: #2c3e50; border-radius: 2rem; padding: 1.5rem 2rem; color: white; margin: 1rem 0;">
     <div>
-      <h1><i class="fas fa-chart-line" style="color: #2563eb;"></i> Sample Portfolio Analysis</h1>
-      <p style="color: #475569; margin-top: 8px;">5-stock diversified portfolio | Tracking period: April 1 – April 21, 2026</p>
+      <i class="fas fa-file-alt" style="font-size: 2rem; margin-right: 1rem;"></i>
+      <span style="font-weight: 600;">Looking for entry-level mechanical / renewable energy roles.</span>
     </div>
-    <div class="badge"><i class="far fa-calendar-alt"></i> 3-Week Performance Review</div>
+    <button class="btn-resume" id="resumeBtn"><i class="fas fa-download"></i> Download resume (PDF)</button>
   </div>
 
-  <!-- PORTFOLIO COMPOSITION & RETURN SUMMARY -->
-  <div class="card">
-    <h2><i class="fas fa-layer-group"></i> Portfolio Composition & Total Return</h2>
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr><th>Stock (Sector)</th><th>Shares</th><th>Start Price</th><th>End Price</th><th>Start Value</th><th>End Value</th><th>Return</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>AAPL (Technology)</td><td>20</td><td>$150.00</td><td>$155.00</td><td>$3,000</td><td>$3,100</td><td class="positive">+3.33%</td></tr>
-          <tr><td>TSLA (EV/Auto)</td><td>10</td><td>$700.00</td><td>$715.00</td><td>$7,000</td><td>$7,150</td><td class="positive">+2.14%</td></tr>
-          <tr><td>KO (Consumer Goods)</td><td>30</td><td>$58.00</td><td>$60.00</td><td>$1,740</td><td>$1,800</td><td class="positive">+3.45%</td></tr>
-          <tr><td>JNJ (Healthcare)</td><td>25</td><td>$165.00</td><td>$170.00</td><td>$4,125</td><td>$4,250</td><td class="positive">+3.03%</td></tr>
-          <tr><td>XOM (Energy)</td><td>40</td><td>$110.00</td><td>$115.00</td><td>$4,400</td><td>$4,600</td><td class="positive">+4.55%</td></tr>
-          <tr style="background:#f9fbfe; font-weight:700;"><td colspan="4"><strong>Total Portfolio</strong></td><td><strong>$20,265</strong></td><td><strong>$20,900</strong></td><td class="positive"><strong>+3.14%</strong></td></tr>
-        </tbody>
-      </table>
+  <footer>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 1rem;">
+      <a href="#" style="color:#e67e22; text-decoration: none;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="#" style="color:#e67e22; text-decoration: none;"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" style="color:#e67e22; text-decoration: none;"><i class="fas fa-envelope"></i> mohithmallavarapu70@gmail.com</a>
     </div>
-    <div class="kpi-row">
-      <div class="kpi"><span class="kpi-number">3.14%</span><br>Portfolio Return</div>
-      <div class="kpi"><span class="kpi-number">2.5%</span><br>S&P 500 Benchmark</div>
-      <div class="kpi"><span class="kpi-number" style="color:#10b981;">+0.64%</span><br>Outperformance (Alpha)</div>
-      <div class="kpi"><span class="kpi-number">$20,900</span><br>Final Value</div>
-    </div>
-    <p style="margin-top: 12px;"><i class="fas fa-chart-simple"></i> <strong>Portfolio Return = ($20,900 – $20,265) / $20,265 × 100 = 3.14%</strong> — Outperformed S&P 500 (+2.5%) by 0.64%.</p>
-  </div>
-
-  <!-- CHARTS: Allocation & Returns -->
-  <div class="grid-2col">
-    <div class="card">
-      <h3><i class="fas fa-chart-pie"></i> Initial Portfolio Allocation (by value)</h3>
-      <canvas id="allocationPie" style="max-height: 280px; width:100%"></canvas>
-      <div style="margin-top: 16px; font-size: 0.85rem; color:#334155;">Diversified across tech, auto, staples, healthcare & energy</div>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-chart-column"></i> Stock Returns (%) — April 1 to April 21</h3>
-      <canvas id="returnsBar" style="max-height: 280px; width:100%"></canvas>
-      <div style="margin-top: 12px; font-size:0.85rem;">Energy (XOM) led with +4.55% driven by rising oil prices</div>
-    </div>
-  </div>
-
-  <!-- DETAILED STOCK ANALYSIS (Step 3) -->
-  <div class="card">
-    <h2><i class="fas fa-microscope"></i> Detailed Stock Analysis & Key Drivers</h2>
-    <div class="stock-grid">
-      <div class="stock-card"><div class="stock-header"><span class="stock-symbol">AAPL <i class="fab fa-apple"></i></span><span class="stock-return positive">+3.33%</span></div><p><strong>Factors:</strong> New product launch (iPhone 17 Pro) fueled optimism; strong Q2 earnings beat. Tech sector sentiment remained resilient despite interest rate headwinds.</p></div>
-      <div class="stock-card"><div class="stock-header"><span class="stock-symbol">TSLA <i class="fas fa-car"></i></span><span class="stock-return positive">+2.14%</span></div><p><strong>Factors:</strong> Next-gen battery technology announcement boosted EV outlook. However, global supply chain bottlenecks & raw material costs limited upside.</p></div>
-      <div class="stock-card"><div class="stock-header"><span class="stock-symbol">KO <i class="fas fa-wine-bottle"></i></span><span class="stock-return positive">+3.45%</span></div><p><strong>Factors:</strong> Defensive appeal during volatile markets; resilient consumer demand. Pricing power & stable dividends attracted risk-averse capital.</p></div>
-      <div class="stock-card"><div class="stock-header"><span class="stock-symbol">JNJ <i class="fas fa-capsules"></i></span><span class="stock-return positive">+3.03%</span></div><p><strong>Factors:</strong> FDA approval for new immunology drug; healthcare sector defensive flows. Consistent earnings and pipeline progress supported gains.</p></div>
-      <div class="stock-card"><div class="stock-header"><span class="stock-symbol">XOM <i class="fas fa-oil-can"></i></span><span class="stock-return positive">+4.55%</span></div><p><strong>Factors:</strong> Geopolitical tensions drove crude prices +8%; strong operational results & share buybacks. Energy sector outperformed as oil crossed $90/barrel.</p></div>
-    </div>
-  </div>
-
-  <!-- MARKET CONDITIONS & IMPORTANT EVENTS (Step 4 + events) -->
-  <div class="grid-2col">
-    <div class="card">
-      <h2><i class="fas fa-globe-americas"></i> Market Conditions & Impact</h2>
-      <ul style="margin-left: 20px; color: #1e293b;">
-        <li><i class="fas fa-percent"></i> <strong>Interest Rates:</strong> Fed hiked rates by 25bps on April 5 — slight pressure on growth stocks (AAPL/TSLA) but limited due to strong earnings.</li>
-        <li><i class="fas fa-oil-can"></i> <strong>Geopolitical:</strong> Middle East tensions escalated mid-April → Energy prices surged, boosting XOM.</li>
-        <li><i class="fas fa-industry"></i> <strong>Supply Chain:</strong> Continued disruptions in semiconductor & auto parts → Tesla’s production efficiency slightly impacted.</li>
-        <li><i class="fas fa-chart-line"></i> <strong>Sector Rotation:</strong> Investors favored defensive sectors (KO, JNJ) while maintaining tech exposure on AI optimism.</li>
-      </ul>
-      <hr>
-      <h3><i class="fas fa-newspaper"></i> Important Events Tracked (April 1–21)</h3>
-      <div class="event-timeline">
-        <div class="event-item"><div class="event-date">Apr 02</div><div>Apple supplier report: strong iPhone orders → AAPL rallies 1.2%</div></div>
-        <div class="event-item"><div class="event-date">Apr 05</div><div>Fed rate decision +0.25%; markets digest, tech volatility.</div></div>
-        <div class="event-item"><div class="event-date">Apr 10</div><div>Tesla battery day: new dry battery electrode tech → TSLA +3% intraday.</div></div>
-        <div class="event-item"><div class="event-date">Apr 14</div><div>JNJ announces positive phase III results → JNJ jumps 2%.</div></div>
-        <div class="event-item"><div class="event-date">Apr 18</div><div>Oil inventory drop + geopolitical risk → XOM reaches new 52-week high.</div></div>
-      </div>
-    </div>
-
-    <!-- DAILY TRACKING SAMPLE (Step 1) -->
-    <div class="card">
-      <h2><i class="fas fa-table-list"></i> Daily Price Tracking (Sample)</h2>
-      <p style="margin-bottom: 12px;"><i class="fas fa-chart-line"></i> Monitoring period: April 1 – April 21, 2026 (first 5 days shown as illustration). Full daily dataset available on request.</p>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>Date</th><th>AAPL ($)</th><th>TSLA ($)</th><th>KO ($)</th><th>JNJ ($)</th><th>XOM ($)</th></tr></thead>
-          <tbody>
-            <tr><td>2026-04-01</td><td>150.00</td><td>700.00</td><td>58.00</td><td>165.00</td><td>110.00</td></tr>
-            <tr><td>2026-04-02</td><td>151.00</td><td>705.00</td><td>59.00</td><td>167.00</td><td>112.00</td></tr>
-            <tr><td>2026-04-03</td><td>152.00</td><td>710.00</td><td>57.50</td><td>169.00</td><td>113.00</td></tr>
-            <tr><td>2026-04-04</td><td>153.20</td><td>708.50</td><td>58.20</td><td>168.50</td><td>114.30</td></tr>
-            <tr><td>2026-04-05</td><td>152.80</td><td>706.00</td><td>58.90</td><td>168.00</td><td>114.80</td></tr>
-            <tr><td colspan="5" style="background:#fafcff; font-style:italic;">... continued daily tracking until April 21 (end prices as per summary table)</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="badge" style="margin-top: 8px;"><i class="fas fa-chart-simple"></i> Data source: simulated from Yahoo Finance / Bloomberg style</div>
-    </div>
-  </div>
-
-  <!-- SECTOR IMPACT + BENCHMARK COMPARISON -->
-  <div class="card">
-    <h2><i class="fas fa-chart-line"></i> Portfolio vs. Benchmark & Sector Performance</h2>
-    <div class="kpi-row">
-      <div class="kpi"><span class="kpi-number">Tech +3.33%</span><br>Apple (AAPL)</div>
-      <div class="kpi"><span class="kpi-number">Energy +4.55%</span><br>Exxon (XOM)</div>
-      <div class="kpi"><span class="kpi-number">Defensives +3.24%</span><br>KO / JNJ avg</div>
-    </div>
-    <p><strong>Why outperformed benchmark?</strong> The combination of high-growth tech (AAPL), resilient consumer staples (KO) and energy tailwinds (XOM) provided balanced upside. While TSLA slightly lagged due to supply constraints, the overall diversification captured sector rotations effectively. The portfolio's 3.14% return exceeded the S&P 500's 2.5% gain during the same window.</p>
-    <hr>
-    <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between;">
-      <div><i class="fas fa-chart-line"></i> <strong>Benchmark (S&P500):</strong> +2.5% (driven by tech & financials)</div>
-      <div><i class="fas fa-chart-pie"></i> <strong>Portfolio Sharpe (approx):</strong> 1.8 (risk-adjusted resilience)</div>
-      <div><i class="fas fa-calendar-week"></i> <strong>Volatility:</strong> Lower than market due to defensive holdings</div>
-    </div>
-  </div>
-
-  <!-- ADDITIONAL NOTE: RISK & DIVERSIFICATION -->
-  <div class="card" style="background: #fefce8; border-color: #fde047;">
-    <h3><i class="fas fa-lightbulb"></i> Key Takeaway: Diversification Advantage</h3>
-    <p>By allocating across Technology, Automotive, Consumer Staples, Healthcare, and Energy, the portfolio weathered sector-specific shocks (supply chain for TSLA, rate sensitivity for AAPL) while capturing upside from oil prices and defensive inflows. The result: a <strong>+0.64% alpha</strong> vs S&P 500. This analysis validates the strength of multi-asset, multi-sector exposure in dynamic markets.</p>
-  </div>
-
-  <div class="footer-note">
-    <i class="fas fa-chart-line"></i> Hypothetical portfolio analysis based on sample data for educational illustration. Actual past performance does not guarantee future results. Tracking period: April 1–21, 2026. All stock prices and events are simulated for analytical demonstration.
-  </div>
+    <p><i class="fas fa-map-pin"></i> Cleveland, OH · Open to relocation · Available for interviews</p>
+    <p style="margin-top: 1rem; font-size: 0.8rem;">© 2025 Mohith Mallavarapu — Mechanical Engineering Portfolio. Built with colourful blocks & innovation.</p>
+  </footer>
 </div>
 
 <script>
-  // Allocation pie chart (initial portfolio values)
-  const ctxPie = document.getElementById('allocationPie').getContext('2d');
-  new Chart(ctxPie, {
-    type: 'doughnut',
-    data: {
-      labels: ['AAPL (Tech) $3,000', 'TSLA (Auto) $7,000', 'KO (Cons) $1,740', 'JNJ (Health) $4,125', 'XOM (Energy) $4,400'],
-      datasets: [{
-        data: [3000, 7000, 1740, 4125, 4400],
-        backgroundColor: ['#3b82f6', '#ef4444', '#10b981', '#8b5cf6', '#f59e0b'],
-        borderWidth: 0,
-        hoverOffset: 8,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        legend: { position: 'bottom', labels: { font: { size: 11 } } },
-        tooltip: { callbacks: { label: (ctx) => `${ctx.label}: $${ctx.raw} (${((ctx.raw / 20265)*100).toFixed(1)}%)` } }
-      }
-    }
-  });
-
-  // Stock returns bar chart
-  const ctxBar = document.getElementById('returnsBar').getContext('2d');
-  new Chart(ctxBar, {
-    type: 'bar',
-    data: {
-      labels: ['AAPL', 'TSLA', 'KO', 'JNJ', 'XOM'],
-      datasets: [{
-        label: 'Total Return (%) — Apr 1 to Apr 21',
-        data: [3.33, 2.14, 3.45, 3.03, 4.55],
-        backgroundColor: '#2563eb',
-        borderRadius: 10,
-        barPercentage: 0.65,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        tooltip: { callbacks: { label: (ctx) => `${ctx.raw}% gain` } },
-        legend: { position: 'top' },
-      },
-      scales: {
-        y: { title: { display: true, text: 'Return (%)', font: { weight: 'bold' } }, beginAtZero: true, grid: { color: '#eef2ff' } }
-      }
-    }
-  });
+  // Simple interactive button for resume simulation
+  const resumeBtn = document.getElementById('resumeBtn');
+  if (resumeBtn) {
+    resumeBtn.addEventListener('click', () => {
+      alert("📄 Mohith_Mallavarapu_Resume.pdf — you can download the full version. (Demo: portfolio built from resume content)");
+    });
+  }
 </script>
 </body>
 </html>
